@@ -7,6 +7,7 @@ function App() {
   const [isAddchat, setIsAddchat] = useState(false);
   const [groupName, setGroupName] = useState('');
   const [groups, setGroups] = useState([]);
+  const [searchValue,setSearchValue] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [textareaValue, setTextareaValue] = useState(false);
   const [isGroupSelected, setGroupSelected] = useState(false);
@@ -41,7 +42,8 @@ function App() {
   };
 
   // const appUrl = process.env.APP_URL;
-  const appUrl = 'https://pocketnotes-s8zr.onrender.com/';
+  // const appUrl = 'https://pocketnotes-s8zr.onrender.com/';
+  const appUrl = 'http://localhost:3001/';
   const handleCreateGroup = async () => {
 
     const nameParts = groupName.trim().split(' ');
@@ -161,6 +163,11 @@ console.log("chat", chatMessages)
   function generateDeviceIdentifier() {
     return `device_${Math.random().toString(36).substring(7)}`;
   }
+
+  const handleSearch = (event) => {
+    setSearchValue(event.target.value);
+  };
+
   useEffect(() => {
     fetchGroups();
   }, []);
@@ -175,8 +182,9 @@ console.log("chat", chatMessages)
       <div className="app">
         <div className="side-menu">
           <h1>Pocket Notes</h1>
+          <input className='searchinput' placeholder='Search Group' value={searchValue} onChange={handleSearch}></input>
           <div className="history">
-            {groups.map((group) => (
+            {groups.filter((group) => group.name.toLowerCase().includes(searchValue.toLowerCase())).map((group) => (
               <div className={`info ${selectedGroup === group ? 'selected' : ''}`} key={group._id} onClick={() => handleGroupClick(group)}>
                 <h2 className='initials' style={{ backgroundColor: colorMapping[group.color] }}>{group.initials}</h2>
                 <p>{group.name}</p>

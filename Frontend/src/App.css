@@ -15,6 +15,15 @@
   position: relative;
 }
 
+.searchinput{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    padding: 9px 8%;
+    border-radius: 10px;
+    margin: 9px 20px;
+}
+
 .side-menu h1{
   margin: 35px auto;
   width: 100%;
