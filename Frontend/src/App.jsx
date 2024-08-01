@@ -41,7 +41,7 @@ function App() {
   };
 
   // const appUrl = process.env.APP_URL;
-  const appUrl = 'https://pocketnotes-s8zr.onrender.com';
+  const appUrl = 'https://pocketnotes-s8zr.onrender.com/';
   const handleCreateGroup = async () => {
 
     const nameParts = groupName.trim().split(' ');
