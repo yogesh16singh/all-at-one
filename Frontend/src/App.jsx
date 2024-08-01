@@ -42,8 +42,8 @@ function App() {
   };
 
   // const appUrl = process.env.APP_URL;
-  // const appUrl = 'https://pocketnotes-s8zr.onrender.com/';
-  const appUrl = 'http://localhost:3001/';
+  const appUrl = 'https://pocketnotes-s8zr.onrender.com/';
+  // const appUrl = 'http://localhost:3001/';
   const handleCreateGroup = async () => {
 
     const nameParts = groupName.trim().split(' ');
@@ -167,6 +167,23 @@ console.log("chat", chatMessages)
   const handleSearch = (event) => {
     setSearchValue(event.target.value);
   };
+  
+    const handleShare =()=>{
+    const message = chatMessages[selectedGroup._id].map((message, index) => {
+        return `${index + 1}. ${message.text}`;
+      }).join('\n');
+
+      console.log("message",message)
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'Pocket Notes',
+          text: message,
+          
+        })
+          .then(() => console.log('Successful share'))
+    }
+    }
 
   useEffect(() => {
     fetchGroups();
@@ -204,9 +221,11 @@ console.log("chat", chatMessages)
                 <>
                   <h2 style={{ backgroundColor: colorMapping[selectedGroup.color] }}>{selectedGroup.initials}</h2>
                   <p>{selectedGroup.name}</p>
+                
                 </>
-              )}
+              )}  
             </div>
+            <button className='sharebtn' onClick={handleShare}>Share Notes</button>
           </div>
           <div className={`chat ${isGroupSelected ? '' : 'none'}`}>
             {selectedGroup && chatMessages[selectedGroup._id] && chatMessages[selectedGroup._id].map((message) => (

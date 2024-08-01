@@ -23,6 +23,19 @@
     border-radius: 10px;
     margin: 9px 20px;
 }
+.sharebtn{
+  background-color: #43e6fc;
+  font-size: large;
+  border: none;
+  padding:7px 40px;
+  margin: 10px 20px;
+  border-radius:15px;
+}
+
+.sharebtn:hover{
+  cursor: pointer;
+  background-color:cornflowerblue;
+}
 
 .side-menu h1{
   margin: 35px auto;
@@ -188,7 +201,7 @@
   background-color: #16008b;
   padding:1px 0;
   width: 100%;
-
+  display: flex;
 }
 
 .info-head p{
